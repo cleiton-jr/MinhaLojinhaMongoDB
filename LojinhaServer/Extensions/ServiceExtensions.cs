@@ -1,3 +1,4 @@
+using LojinhaServer.Repositories;
 using LojinhaServer.Models;
 using MongoDB.Driver;
 
@@ -30,6 +31,11 @@ namespace LojinhaServer.Services
                 return client.GetDatabase(settings.DatabaseName);
                 });
             }
+            
+                public static void ConfigureProductRepository(this IServiceCollection services)
+                {
+                    services .AddSingleton<IProductRepository, ProductRepository>();
+                }
     }
 }
             

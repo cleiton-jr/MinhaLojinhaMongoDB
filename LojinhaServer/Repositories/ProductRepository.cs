@@ -20,13 +20,8 @@ namespace LojinhaServer.Repositories;
         public async Task CreateAsync (Product product) =>
             await _collection.InsertOneAsync(product);
 
-    public Task UpdateAsync(Product product)
-    {
-        throw new NotImplementedException();
+    public async Task UpdateAsync(Product product) =>
+            await _collection.ReplaceOneAsync(x => x.Id == product.Id, product );
+    public async Task DeleteAsync(string id) =>
+            await _collection.DeleteOneAsync(x => x.Id == id);
     }
-
-    public Task DeleteAsync(string id)
-    {
-        throw new NotImplementedException();
-    }
-}
