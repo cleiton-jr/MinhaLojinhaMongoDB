@@ -34,7 +34,7 @@ public class ProductsControllers : ControllerBase
     public async Task<IActionResult> Post(Product product)
     {
         await _repo.CreateAsync(product);
-        return CreatedAtAction(nameof(Get), new { id = productId}, product);
+        return CreatedAtAction(nameof(Get), new { id = product.Id}, product);
     }
     [HttpPut]
     public async Task<IActionResult> Put(Product product)
@@ -48,15 +48,15 @@ public class ProductsControllers : ControllerBase
         return NoContent();
     }
     [HttpDelete]
-    public async Task<IActionResult> Delete (string id);
+    public async Task<IActionResult> Delete (string id)
     {
         var product = await _repo.GetByIdAsync(id);
-        if private object productId;
 
-    (product == null)
+    if (product == null)
         {
             return NotFound();
         }
+        
         await _repo.DeleteAsync(id);
         return NoContent();
     }
